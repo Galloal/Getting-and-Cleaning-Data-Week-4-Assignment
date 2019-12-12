@@ -1,3 +1,10 @@
+#title: "Getting-and-Cleaning-Data-Week-4-Assignment"
+
+##author: "Galloal"
+
+##output: "tidydate.txt""
+
+
 # Tidy data set description
 
 ### The variables in the tidy data
