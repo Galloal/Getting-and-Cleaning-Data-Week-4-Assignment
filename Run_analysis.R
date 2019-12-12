@@ -1,6 +1,3 @@
-#install.packages("dplyr")
-#install.packages("data.table")
-
 # load libraries
 library(dplyr) 
 
@@ -17,8 +14,8 @@ x_test   <- read.table("./test/X_test.txt")
 y_test   <- read.table("./test/Y_test.txt") 
 sub_test <- read.table("./test/subject_test.txt")
 
-# read features description 
-features <- read.table("./features.txt") 
+# read data description
+variable_names <- read.table("./features.txt")
 
 # read activity labels 
 activity_labels <- read.table("./activity_labels.txt") 
@@ -29,7 +26,7 @@ y_total   <- rbind(y_train, y_test)
 sub_total <- rbind(sub_train, sub_test) 
 
 # keep only measurements for mean and standard deviation 
-sel_features <- variable_names[grep(".*mean\\(\\)|std\\(\\)", features[,2], ignore.case = FALSE),]
+sel_features <- variable_names[grep("mean\\(\\)|std\\(\\)",variable_names[,2]),]
 x_total      <- x_total[,sel_features[,1]]
 
 # name columns
@@ -50,3 +47,4 @@ total_mean <- total %>% group_by(activity, subject) %>% summarize_all(funs(mean)
 
 # export summary dataset
 write.table(total_mean, file = "./tidydata.txt", row.names = FALSE, col.names = TRUE) 
+
